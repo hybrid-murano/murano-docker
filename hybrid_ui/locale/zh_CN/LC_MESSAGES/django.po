@@ -1,0 +1,138 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-07-19 03:34+0000\n"
+"Last-Translator: \n"
+"Language-Team: Chinese (China)\n"
+"Language: zh-CN\n"
+"X-Generator: Zanata 3.7.3\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+msgid "Displaying %(counter)s item"
+msgid_plural "Displaying %(counter)s items"
+msgstr[0] "共%(counter)s条"
+
+msgid "No items to display."
+msgstr "没有条目"
+
+msgid "Ironic Bare Metal Provisioning"
+msgstr "裸机部署"
+
+msgid "Log In"
+msgstr "登录"
+
+msgid "Domain"
+msgstr "域"
+
+msgid "Clouds"
+msgstr "云"
+
+msgid "DNS"
+msgstr "域名解析器"
+
+msgid "AddDisk"
+msgstr "添加磁盘"
+
+msgid "CreateVM"
+msgstr "创建虚拟机"
+
+msgid "DeleteDisk"
+msgstr "删除磁盘"
+
+msgid "DeleteVM"
+msgstr "删除虚拟机"
+
+msgid "DetachDisk"
+msgstr "卸载磁盘"
+
+msgid "RebootVM"
+msgstr "重启动虚拟机"
+
+msgid "StartVM"
+msgstr "启动虚拟机"
+
+msgid "StopVM"
+msgstr "关闭虚拟机"
+
+msgid "Flavors"
+msgstr "虚拟机规格"
+
+msgid "Instance Image"
+msgstr "虚拟机镜像"
+
+msgid "Schedule Task Template"
+msgstr "定时任务模板"
+
+msgid "Murano"
+msgstr "服务目录"
+
+msgid "FusionSphere"
+msgstr "FusionSphere"
+
+msgid "AWS"
+msgstr "Amazon Web Service"
+
+msgid "vCloud"
+msgstr "VMware vCloud"
+
+msgid "OTC"
+msgstr "Open Telekom Cloud"
+
+msgid "HWS"
+msgstr "Huawei Enterprise Service"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "Repeat"
+msgstr "重复"
+
+msgid "ONCE"
+msgstr "一次"
+
+msgid "DAY"
+msgstr "每日"
+
+msgid "Actions"
+msgstr "操作"
+
+msgid "Delete Task"
+msgstr "删除任务"
+
+msgid "Time Started"
+msgstr "启动时间"
+
+msgid "Time Finished"
+msgstr "结束时间"
+
+msgid "Time updated"
+msgstr "更新时间"
+
+msgid "Successful"
+msgstr "成功"
+
+msgid "Running"
+msgstr "运行中"
+
+msgid "Failed"
+msgstr "失败"
+
+msgid "Displaying %s item"
+msgstr "显示%s项"
+
+msgid "Refresh Task Status"
+msgstr "刷新任务状态"
+
+msgid "Schedules"
+msgstr "定时服务"
+
+msgid "Schedule Tasks"
+msgstr "定时任务"
+
+msgid "Drop Tasks here"
+msgstr "放置任务模板于此"

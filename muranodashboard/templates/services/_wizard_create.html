@@ -1,0 +1,131 @@
+{% extends "horizon/common/_modal_form.html" %}
+{% load i18n humanize %}
+{% block form_action %}
+    {% url 'horizon:murano:catalog:add' app_id environment_id do_redirect drop_wm_form %}
+{% endblock %}
+{% block form_id %}form_{{ app_id }}{% endblock %}
+{% block modal_id %}modal_{{ app_id }}{% endblock %}
+{% block modal-header %}
+  <span class="wizard_title">
+    <img src="{% url 'horizon:murano:catalog:images' app_id %}" height="25" width="25"/>
+    {% trans "Configure Application" %}: {{ service_name }}
+  </span>
+{% endblock %}
+{% block steps-list %}
+  <div class="steps_list_container">
+    <ul class="steps_list list-inline">
+      {% with steps=wizard.steps %}
+        {% for step in steps.all %}
+          {% with counter0=forloop.counter0 %}
+            <li class="{% if counter0 == steps.step0 %}active {% elif counter0 < steps.step0 %}done{% endif %}">
+              {{ step }}
+            </li>
+          {% endwith %}
+        {% endfor %}
+      {% endwith %}
+    </ul>
+  </div>
+{% endblock %}
+
+{% block modal-body %}
+<div class="left">
+{{ wizard.management_form }}
+{% if wizard.form.forms %}
+    {{ wizard.form.management_form }}
+    {% for form in wizard.form.forms %}
+        {{ form }}
+    {% endfor %}
+{% else %}
+    <fieldset>
+    {% with form=wizard.form %}
+        {% include "horizon/common/_form_fields.html" %}
+    {% endwith %}
+    </fieldset>
+{% endif %}
+<p>{{ extended_description }}</p>
+</div>
+<div class="right">
+    <h3>{{ service_name }}</h3>
+    {% for name, title, description in field_descriptions %}
+        <p>
+        {% if title %}
+            <strong data-field-name="{{ wizard.steps.step0 }}-{{ name }}">
+              {{ title }}:
+            </strong>
+        {% endif %}
+        <div class="more_dynamicui_description">
+          {{ description|linebreaksbr }}
+        </div>
+        </p>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block modal-footer %}
+    <script type="text/javascript">
+        {# TODO(efedorova): extract to a separate file #}
+        $(function() {
+          {# Make element ids unique per-wizard to avoid interference #}
+          {# upon pressing 'Back' button while creating one application #}
+          {# from another #}
+          var btn_id = '#{{ prefix }}_btn', val_id = '#{{ prefix }}_val';
+          $(btn_id).click(function() {
+            $(val_id).val('{{ wizard.steps.prev }}')
+          });
+          $('#modal_wrapper').on('new_modal', function(evt, modal) {
+            var $modal = $(modal);
+            $modal.find('.form-group input, select').each(function(index, elem) {
+              var $elem = $(elem),
+                  name = $elem.attr('name'),
+                  $descEntry = $modal.find('strong[data-field-name*="'+name+'"]'),
+                  $button = elem.tagName == 'SELECT' && $elem.next().find('a'),
+                  bindHandler = function($el) {
+                    $el.blur(function() {
+                      $descEntry.children('i').remove()
+                      $descEntry.removeClass('selected-field')
+                    }).focus(function() {
+                      // remove <i> if previous form  without submit
+                      $descEntry.children('i').remove()
+                      $descEntry.addClass('selected-field')
+                      $descEntry.prepend(
+                              "<i class='fa fa-chevron-circle-right'></i>")
+                    })
+                  };
+              bindHandler($elem);
+              // track both parts of add-select widget
+              if ( $button && $button.length ) {
+                bindHandler($button);
+              }
+            }).filter(':first').trigger('focus');
+          });
+            // show full name on text overflow
+            $('.modal-dialog h3').each(function () {
+                $(this).bind('mouseenter', function () {
+                    var $this = $(this);
+
+                    if (this.offsetWidth < this.scrollWidth && !$this.attr('title')) {
+                        $this.attr('title', $this.text());
+                    }
+                });
+            });
+        });
+    </script>
+    {{ wizard.form.media }}
+
+    <input type="hidden" name="wizard_goto_step" id="{{ prefix }}_val"/>
+    <input type="hidden" name="do_redirect" value="{{ do_redirect }}"/>
+    <input type="hidden" name="drop_wm_form" value="{{ drop_wm_form }}"/>
+    {% if wizard.steps.next %}
+        {% trans "Next" as next %}
+    {% else %}
+        {% trans "Create" as next %}
+    {% endif %}
+    {% if wizard.steps.index > 0 %}
+        <input type="submit" class="btn btn-primary pull-right" value="{{ next }}"/>
+        <button name="wizard_goto_step" type="submit" class="btn btn-small wizard_cancel"
+                id="{{ prefix }}_btn">{% trans "Back" %}</button>
+    {% else %}
+        <button name="wizard_goto_step" type="submit" class="btn btn-small">
+            {{ next }}</button>
+    {% endif %}
+{% endblock %}

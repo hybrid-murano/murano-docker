@@ -1,0 +1,52 @@
+{% load i18n horizon humanize sizeformat %}
+
+{% spaceless %}
+  <div class="quota-dynamic">
+    <h3 class="quota-heading">{% trans "Limit Summary" %}</h3>
+     {% for quota in charts %}
+       {% if forloop.last or forloop.counter0|divisibleby:6 %}
+         </div>
+       {% endif %}
+       {% if forloop.first or forloop.counter0|divisibleby:6 %}
+         <div class="row">
+       {% endif %}
+        <div class="d3_quota_bar col-lg-2 col-md-3 col-sm-4 col-xs-6 fix-it">
+          <div class="d3_pie_chart_usage" data-used="{% quotapercent quota.used quota.max %}"></div>
+          <div class="quota_title" title="{{ quota.name }}" data-toggle="tooltip"> {{ quota.name }}</div>
+          <div class="quota_subtitle">
+            {% if quota.max|quotainf != '-1' %}
+              {% blocktrans with used=quota.used|intcomma available=quota.max|quotainf|intcomma %}
+                Used <span> {{ used }} </span>of<span> {{ available }} </span>
+              {% endblocktrans %}
+            {% else %}
+              {% blocktrans with used=quota.used|intcomma %}
+                Used <span> {{ used }} </span>(No Limit)
+              {% endblocktrans %}
+            {% endif %}
+          </div>
+        </div>
+     {% endfor %}
+  <p>
+    <div class="d3_quota_bar">
+      <div class="d3_pie_chart_distribution" data-used="{% trans "FusionSphere" %}={{usage.inst_dist.fusionsphere}}|{% trans "vCloud" %}={{usage.inst_dist.vcloud}}|{% trans "AWS" %}={{usage.inst_dist.aws}}|{% trans "HWS" %}={{usage.inst_dist.hws}}|{% trans "Free" %}={{usage.inst_dist.free}}"></div>
+      <strong>{% trans "Instances" %} <br />
+        {% blocktrans with used=usage.limits.totalInstancesUsed|intcomma available=usage.limits.maxTotalInstances|quotainf|intcomma %}Used <span> {{ used }} </span> of <span> {{ available }} </span>{% endblocktrans %}
+      </strong>
+    </div>
+
+    <div class="d3_quota_bar">
+      <div class="d3_pie_chart_distribution" data-used="{% trans "FusionSphere" %}={{usage.vcpu_dist.fusionsphere}}|{% trans "vCloud" %}={{usage.vcpu_dist.vcloud}}|{% trans "AWS" %}={{usage.vcpu_dist.aws}}|{% trans "HWS" %}={{usage.vcpu_dist.hws}}|{% trans "Free" %}={{usage.vcpu_dist.free}}"></div>
+      <strong>{% trans "VCPUs" %} <br />
+        {% blocktrans with used=usage.limits.totalCoresUsed|intcomma available=usage.limits.maxTotalCores|quotainf|intcomma %}Used <span> {{ used }} </span> of <span> {{ available }} </span>{% endblocktrans %}
+      </strong>
+    </div>
+
+    <div class="d3_quota_bar">
+      <div class="d3_pie_chart_distribution" data-used="{% trans "FusionSphere" %}={{usage.mem_dist.fusionsphere}}|{% trans "vCloud" %}={{usage.mem_dist.vcloud}}|{% trans "AWS" %}={{usage.mem_dist.aws}}|{% trans "HWS" %}={{usage.mem_dist.hws}}|{% trans "Free" %}={{usage.mem_dist.free}}"></div>
+      <strong>{% trans "RAM" %} <br />
+        {% blocktrans with used=usage.limits.totalRAMUsed|mb_float_format available=usage.limits.maxTotalRAMSize|quotainf|mb_float_format %}Used <span> {{ used }} </span> of <span> {{ available }} </span>{% endblocktrans %}
+      </strong>
+    </div>
+  {% endif %}
+  </div>
+{% endspaceless %}

@@ -1,0 +1,149 @@
+{% load i18n %}
+
+{% spaceless %}
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">{% trans "Toggle navigation" %}</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {% include "header/_brand.html" %}
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav">
+        {% include "header/_context_selection.html" %}
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        {% include "header/_user_menu.html" %}
+        {% include "header/_region_selection.html" %}
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+{% endspaceless %}
+<style>
+.navbar-default {
+	background-color: #484a4b;
+	border-color: #ccc;
+	line-height: 60px;
+	height: 60px;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: #fff;
+	font-size: 14px;
+}
+
+.navbar-nav > li > a {
+	line-height: 40px;
+}
+
+.navbar-header .navbar-brand {
+	line-height: 60px;
+}
+
+#sidebar .openstack-panel.active > a {
+	font-weight: normal;
+	font-size: 14px;
+	color: #009ae7;
+	background: #fff;
+	border-bottom: 1px solid #e5e5e5;
+	border-left: 4px solid #009ae7;
+	border-top: 1px solid #e5e5e5;
+	-webkit-box-shadow: -3px 3px 6px -3px #c7c7c7;
+	box-shadow: -3px 3px 6px -3px #c7c7c7;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+	background-color: #666;
+	color: #00a6e7;
+}
+
+.navbar-default .navbar-nav > li > a:hover,.navbar-default .navbar-nav > li > a:focus {
+    background-color: #666;
+	color: #00a6e7;
+}
+
+#main_content {
+	padding-top: 60px;
+}
+
+#sidebar .nav-header > a > .nav-header-title {
+	text-align: center;
+	text-transform: none;
+	padding: 5px 0;
+	border-bottom: 1px solid #BBB;
+}
+
+#sidebar {
+	background-color: #f9f9f9;
+	-webkit-box-shadow: -3px 2px 1px -2px #c7c7c7 inset, -1px 0 0 0 #c7c7c7 inset;
+	box-shadow: -3px 2px 1px -2px #c7c7c7 inset, -1px 0 0 0 #c7c7c7 inset;
+	height: 100%;
+	padding-top: 0px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+	color: #666;
+	border: 1px solid #ddd;
+	border-top: 3px solid #009ae7;
+	border-bottom-color: transparent;
+	cursor: default;
+}
+
+.nav-tabs > li > a {
+	color: #666;
+}
+
+.table {
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.table .line-break {
+    white-space: pre-wrap;
+}
+
+.table th:first-child > .table-data,
+.table td:first-child > .table-data {
+    margin-left: 20px;
+}
+
+.table th:last-child > .table-data,
+.table td:last-child > .table-data {
+    margin-right: 20px;
+}
+
+.table > thead > tr > th {
+    height: 16px;
+    line-height: 16px;
+    font-weight: 600;
+    color: #666;
+    background-color: #f3f3f3;
+    border-top: 1px solid #d3d3d3 !important;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.table > thead > tr > td {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 6px;
+    word-break: break-all;
+}
+
+</style>

@@ -1,0 +1,30 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Murano"
+msgstr "Service Catalog"
+
+msgid "FusionSphere"
+msgstr "FusionSphere"
+
+msgid "AWS"
+msgstr "Amazon Web Service"
+
+msgid "vCloud"
+msgstr "VMware vCloud"
+
+msgid "OTC"
+msgstr "Open Telekom Cloud"
+
+msgid "HWS"
+msgstr "Huawei Enterprise Service"

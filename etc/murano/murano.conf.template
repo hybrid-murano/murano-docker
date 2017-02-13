@@ -1,0 +1,59 @@
+[DEFAULT]
+log_dir = /var/log/murano
+max_header_line = 65536
+rpc_backend = rabbit
+home_region = %%REGION%%
+
+[database]
+connection = mysql://root:%%MYSQL_PASSWORD%%@localhost/murano?charset=utf8
+
+[engine]
+use_trusts = true
+use_deploy = true
+
+[heat]
+insecure = true
+
+[keystone]
+insecure = true
+
+[neutron]
+insecure = true
+
+[keystone_authtoken]
+insecure = true
+memcached_server = 127.0.0.1:11211
+auth_type = password
+project_domain_name = Default
+user_domain_name = Default
+admin_tenant_name = service
+admin_user = heat
+admin_password = %%PASSWORD%%
+project_name = service
+username = heat
+password = %%PASSWORD%%
+identity_uri = %%KEYSTONE%%
+auth_uri = $identity_uri/v3
+auth_url = $identity_uri
+
+[murano]
+insecure = true
+url = http://127.0.0.1:8082
+period = 5
+
+[networking]
+create_router = false
+
+[oslo_messaging_notifications]
+driver = messagingv2
+
+[oslo_messaging_rabbit]
+rabbit_password = %%MYSQL_PASSWORD%%
+rabbit_hosts = 127.0.0.1
+
+[rabbitmq]
+login = %%MQ_USER%%
+password = %%MQ_PASS%%
+host = %%MQ_HOST%%
+ssl = %%MQ_SSL%%
+insecure = true

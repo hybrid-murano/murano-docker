@@ -1,0 +1,4 @@
+{% load i18n %}
+
+{% trans "Quick Deploy" as label %}
+<a href="{% url 'horizon:murano:catalog:quick_deploy' app.id %}" class="{{ class }}"><i class="fa fa-rocket"></i> {{ label }}</a>
