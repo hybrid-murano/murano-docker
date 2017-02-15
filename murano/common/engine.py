@@ -103,7 +103,7 @@ class ContextManager(context_manager.ContextManager):
         return context
 
 
-from murano.common import memoized
+from murano.hybrid import memoized
 class TaskProcessingEndpoint(object):
     @classmethod
     def handle_task(cls, context, task):
