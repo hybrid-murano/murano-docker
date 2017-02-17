@@ -9,7 +9,7 @@ def patch():
         'volume_type': dynamic_ui.VolumeTypeField,
         'images': dynamic_ui.ImageChoiceField,
         'flavor_id': dynamic_ui.FlavorChoiceField,
-        'networks': dynamic_ui.NetworkChoiceField,
+        'network': dynamic_ui.NetworkChoiceField,
         'date': dynamic_ui.DateField,
         'time': dynamic_ui.TimeField,
         'password': dynamic_ui.PasswordField,

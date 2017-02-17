@@ -411,7 +411,7 @@ class NetworkChoiceField(ChoiceField):
                  include_subnets=True,
                  filter=None,
                  murano_networks=None,
-                 allow_auto=True,
+                 allow_auto=False,
                  exclude_ext_net=True,
                  *args,
                  **kwargs):
