@@ -204,7 +204,7 @@ def environment_get(request, environment_id):
               format(environment_id, session_id))
     client = api.muranoclient(request)
     env = client.environments.get(environment_id, session_id)
-    acquired = getattr(env, 'acquired_by', None)
+    acquired = getattr(env.__dict__, 'acquired_by', None)
     if acquired and acquired != session_id:
         env = client.environments.get(environment_id, acquired)
         Session.set(request, environment_id, acquired)
