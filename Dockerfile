@@ -16,7 +16,7 @@ RUN  sed -i "s/%%MYSQL_PASSWORD%%/$MYSQL_PASSWORD/g" /etc/murano/murano.conf.tem
      TZ=`echo $TZ|sed "s/\//\\\\\\\\\\//g"` && sed "s/%%TZ%%/$TZ/g" /etc/openstack-dashboard/local_settings.py.template > /etc/openstack-dashboard/local_settings.py && \
      sed -i "s/%%PAGINATE%%/$PAGINATE/g" /etc/openstack-dashboard/local_settings.py && \
      sed -i "s/%%MULTI_DOMAIN%%/$MULTI_DOMAIN/g" /etc/openstack-dashboard/local_settings.py && \
-     cp -sf /usr/local/lib/python2.7/dist-packages/hybrid_ui/enabled/_8*.py /usr/share/openstack-dashboard/openstack_dashboard/local/enabled/
+     cp -sf /usr/local/lib/python2.7/dist-packages/hybrid_ui/enabled/_8*.py /usr/share/openstack-dashboard/openstack_dashboard/local/enabled/ && \
      msgfmt /usr/local/lib/python2.7/dist-packages/muranodashboard/locale/zh_CN/LC_MESSAGES/django.po -o /usr/local/lib/python2.7/dist-packages/muranodashboard/locale/zh_CN/LC_MESSAGES/django.mo && \
      msgfmt /usr/local/lib/python2.7/dist-packages/hybrid_ui/locale/en/LC_MESSAGES/django.po -o /usr/local/lib/python2.7/dist-packages/hybrid_ui/locale/en/LC_MESSAGES/django.mo && \
      msgfmt /usr/local/lib/python2.7/dist-packages/hybrid_ui/locale/zh_CN/LC_MESSAGES/django.po -o /usr/local/lib/python2.7/dist-packages/hybrid_ui/locale/zh_CN/LC_MESSAGES/django.mo && \
