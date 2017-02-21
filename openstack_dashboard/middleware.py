@@ -38,8 +38,8 @@ def get_user(request):
 
 @login_required
 def sso_jump(request, service):
-    endpoint = base.url_for(request, service, region='global')
-    ks = keystone.keystoneclient(request, admin=True)
+    endpoint = base.url_for(request, service)
+    ks = keystone.keystoneclient(request)
     auth_url = ks.get_endpoint(None).replace('v2.0', 'v3')
     auth_methods = [v3_auth.TokenMethod(token=request.user.token.id)]
     plugin = v3_auth.Auth(auth_url, auth_methods, project_id=request.user.tenant_id, include_catalog=False)
