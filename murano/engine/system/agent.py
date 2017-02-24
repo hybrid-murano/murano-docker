@@ -89,7 +89,7 @@ class Agent(object):
             listener().subscribe(msg_id, event)
 
         msg = self._prepare_message(template, msg_id)
-        LOG.info('sending agent {0}: {1}'.format(msg_id, template))
+        LOG.info('send agent {0}: {1}'.format(msg_id, template))
         with common.create_rmq_client() as client:
             client.send(message=msg, key=self._queue)
 
@@ -104,7 +104,7 @@ class Agent(object):
                     'The murano-agent did not respond '
                     'within {0} seconds'.format(timeout))
 
-            LOG.info('receiving agent {0}: {1}'.format(msg_id, result))
+            LOG.info('recv agent {0}: {1}'.format(msg_id, result))
             if not result:
                 return None
 
