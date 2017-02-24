@@ -47,6 +47,5 @@
         {% blocktrans with used=usage.limits.totalRAMUsed|mb_float_format available=usage.limits.maxTotalRAMSize|quotainf|mb_float_format %}Used <span> {{ used }} </span> of <span> {{ available }} </span>{% endblocktrans %}
       </strong>
     </div>
-  {% endif %}
   </div>
 {% endspaceless %}
