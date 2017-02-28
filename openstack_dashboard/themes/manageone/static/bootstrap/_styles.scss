@@ -38,10 +38,9 @@ h4 {
 
   // but override that for button groups
 
-  .btn-group .btn + .btn {
-
-    margin-left: -1px;
-  }
+//  .btn-group .btn + .btn {
+//    margin-left: -1px;
+//  }
 
   // and override it for block buttons as well
   
@@ -72,15 +71,14 @@ h4 {
   user-select: none;
 }
 .btn-danger.disabled {
-    color: #333333;
-    background: transparent;
+    color: #fff;
 }
-.btn-group > .btn + .dropdown-toggle {
-    padding-left: 8px;
-    padding-right:8px;
-    border: none;
-    background: transparent;
-}
+//.btn-group > .btn + .dropdown-toggle {
+//    padding-left: 8px;
+//    padding-right:8px;
+//    border: none;
+//    background: transparent;
+//}
 .open > .dropdown-menu {
     display:block;
     border-radius:0px;
@@ -174,11 +172,11 @@ h4 {
 .dropdown-toggle:hover {
     background: transparent;
 }
-.btn-group .btn + .btn {
-  color: #00a6e7;
-  border : none;
-  background: transparent;
-}
+//.btn-group .btn + .btn {
+//  color: #00a6e7;
+//  border : none;
+//  background: transparent;
+//}
 .modal-header {
     -moz-border-radius-topleft: 5px;
 -webkit-border-top-left-radius: 5px;
@@ -253,14 +251,14 @@ background: url('/static/themes/manageone/img/alarm_title.png')  #d5d5d5 !import
      padding : 5px;
      border-top: 1px solid #e3e3e3;
 }
-.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
-     border-bottom-right-radius: 18px;
-     border-top-right-radius: 18px;
-}
-.btn-group > .btn:last-child:not(:first-child) {
-     border-bottom-left-radius: 18px;
-     border-top-left-radius: 18px;
-}
+//.btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+//     border-bottom-right-radius: 18px;
+//     border-top-right-radius: 18px;
+//}
+//.btn-group > .btn:last-child:not(:first-child) {
+//     border-bottom-left-radius: 18px;
+//     border-top-left-radius: 18px;
+//}
 #environment_configuration > tbody > tr > td {
     height: 40px;
 }
@@ -347,26 +345,18 @@ h1 {
   height: 25px;
   
 }
-.btn-danger,
-.btn-danger:hover {
-    border: $btn-danger-noborder;
-    background: $btn-danger-bg1;
-}
 .fa-pencil {
     color:#00a6e7;
 }
-.btn-group.open .dropdown-toggle {
-
-  -webkit-box-shadow:none;
-         box-shadow: none;
-
-
-}
-.btn-group > .btn:first-child {
-    background: transparent;
-    border : none;
-    color: #00a6e7;
-}
+//.btn-group.open .dropdown-toggle {
+//  -webkit-box-shadow:none;
+//         box-shadow: none;
+//}
+//.btn-group > .btn:first-child {
+//    background: transparent;
+//    border : none;
+//    color: #00a6e7;
+//}
 .input-group:hover {
     background: transparent;
 }
