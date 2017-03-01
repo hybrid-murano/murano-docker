@@ -357,7 +357,10 @@ class ImageChoiceField(ChoiceField):
         except Exception:
             images = []
             exceptions.handle(request, _("Unable to retrieve volume types."))
-        choices = [(image.id, image.name) for image in images]
+        if 'name' in kwargs:
+            choices = [(image.id, image.name) for image in images if image.name.startswith(kwargs.get('name'))]
+        else:
+            choices = [(image.id, image.name) for image in images]
         if not choices:
             choices.insert(0, ("", _("No images available")))
         self.choices = choices
@@ -561,6 +564,8 @@ class PodAZoneChoiceField(ChoiceField):
         az_choices = [(az.zoneName, az.zoneName) for az in availability_zones if az.zoneState['available']]
         if not az_choices:
             az_choices.insert(0, ("", _("No availability zones available")))
+        else:
+            az_choices.insert(0, ("", _("Select Availability Zone")))
         self.choices = az_choices
 
 

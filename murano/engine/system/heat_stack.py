@@ -14,6 +14,7 @@
 # limitations under the License.
 
 import copy
+import time
 
 import eventlet
 import heatclient.client as hclient
@@ -53,6 +54,7 @@ class HeatStack(object):
         self._last_stack_timestamps = (None, None)
         self._tags = ''
         self._owner = this.find_owner('io.murano.Environment')
+        self._output = None
 
     @staticmethod
     def _create_client(session, region_name):
@@ -169,13 +171,14 @@ class HeatStack(object):
             status[0] = state_value
             return True
 
-        self._wait_state(status_func)
+        self._output = self._wait_state(status_func)
         return status[0]
 
-    def _wait_state(self, status_func, wait_progress=False):
+    def _wait_state(self, status_func, wait_progress=False, timeout=600):
         tries = 4
         delay = 1
 
+        end = time.time() + timeout
         while tries > 0:
             while True:
                 try:
@@ -194,6 +197,9 @@ class HeatStack(object):
                         raise
                     eventlet.sleep(delay)
                     break
+
+                if time.time() >= end:
+                    raise EnvironmentError("Unexpected stack timeout")
 
                 if 'IN_PROGRESS' in status:
                     eventlet.sleep(2)
@@ -223,11 +229,12 @@ class HeatStack(object):
         return {}
 
     def output(self):
-        return self._wait_state(lambda status: True)
+        if self._output is None:
+            self._output = self._wait_state(lambda status: True)
+        return self._output
 
     def push(self):
         while pushing.get(self._name, False):
-            LOG.info('apply status on wait {0}: {1}'.format(self._name, applied.get(self._name, True)))
             eventlet.sleep(5)
 
         _template = cache.get(self._name)
@@ -242,10 +249,8 @@ class HeatStack(object):
             _template['description'] = self._description
 
         pushing[self._name] = True
-        applied[self._name] = True
         template = copy.deepcopy(_template)
         LOG.info('Pushing {0}: {1}'.format(self._name, template))
-        LOG.info('apply status begin {0}: {1}'.format(self._name, applied.get(self._name, True)))
 
         while True:
             try:
@@ -264,7 +269,7 @@ class HeatStack(object):
                             disable_rollback=True,
                             tags=self._tags)
 
-                        self._wait_state(
+                        self._output = self._wait_state(
                             lambda status: status == 'CREATE_COMPLETE')
                 else:
                     if resources is not None:
@@ -276,7 +281,7 @@ class HeatStack(object):
                             template=template,
                             disable_rollback=True,
                             tags=self._tags)
-                        self._wait_state(
+                        self._output = self._wait_state(
                             lambda status: status == 'UPDATE_COMPLETE', True)
                     else:
                         self.delete()
@@ -285,17 +290,14 @@ class HeatStack(object):
                 eventlet.sleep(3)
             except EnvironmentError as ee:
                 LOG.warning(_LW('Heat Stack Error: {msg}').format(msg=ee))
-                applied[self._name] = False
                 pushing[self._name] = False
-                LOG.info('apply status on EnvironmentError {0}: {1}'.format(self._name, applied.get(self._name, True)))
                 raise ee
             else:
-                #applied[self._name] = False
-                LOG.info('apply status on unknown {0}: {1}'.format(self._name, applied.get(self._name, True)))
                 break
 
         pushing[self._name] = False
-        LOG.info('apply status {0}: {1}'.format(self._name, applied.get(self._name, True)))
+        applied[self._name] = not utils.is_different(cache.get(self._name).get('resources', {}), template.get('resources', {}))
+        LOG.info('Pushing {0}: end with applied={1}'.format(self._name, applied.get(self._name, True)))
 
     def delete(self):
         while True:

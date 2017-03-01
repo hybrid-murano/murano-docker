@@ -9,7 +9,7 @@ connection = mysql://root:%%MYSQL_PASSWORD%%@localhost/murano?charset=utf8
 
 [engine]
 use_trusts = true
-use_deploy = true
+use_deploy = false
 
 [heat]
 insecure = true

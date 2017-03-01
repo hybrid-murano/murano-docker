@@ -126,6 +126,7 @@ class MuranoDslExecutor(object):
                             method.declaring_type), self)
                     return method.body(
                         yaql_engine, context, native_this)(*args, **kwargs)
+                    return result
                 else:
                     context[constants.CTX_NAMES_SCOPE] = \
                         method.declaring_type

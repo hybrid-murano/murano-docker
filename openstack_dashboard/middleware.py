@@ -9,7 +9,13 @@ from keystoneclient.auth.identity import v3 as v3_auth
 from openstack_dashboard.api import base
 from openstack_dashboard.api import keystone
 
+import re
+from django.conf import settings
+from six.moves.urllib import parse as urlparse
 def sso(request):
+    referer = request.META.get('HTTP_REFERER', settings.OPENSTACK_KEYSTONE_URL)
+    scheme, netloc, path, query, fragment = urlparse.urlsplit(referer)
+    auth_url = urlparse.urlunsplit((scheme, netloc, re.sub(r'/auth.*', '', path), '', ''))
     token = request.REQUEST.get('token')
     project_id = request.REQUEST.get('vdcId')
     if token is None or project_id is None:
@@ -49,6 +55,7 @@ def sso_jump(request, service):
 
 from openstack_auth import urls
 from django.conf.urls import url
+from openstack_auth import utils as auth_utils
 def patch():
-    auth.get_user = get_user
+    auth_utils.get_user = get_user
     urls.urlpatterns.append(url(r"^sso_jump/(?P<service>[^/]+)/$", sso_jump, name='sso_jump'))

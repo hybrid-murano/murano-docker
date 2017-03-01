@@ -21,7 +21,9 @@ from muranodashboard import api
 from muranodashboard.common import cache
 from muranodashboard.dynamic_ui import yaql_expression
 
+from horizon.utils.memoized import memoized  # noqa
 
+@memoized
 def package_list(request, marker=None, filters=None, paginate=False,
                  page_size=20, sort_dir=None, limit=None):
     limit = limit or getattr(settings, 'PACKAGES_LIMIT', 100)
@@ -54,6 +56,7 @@ def package_list(request, marker=None, filters=None, paginate=False,
     return packages, has_more_data
 
 
+@memoized
 def app_by_fqn(request, fqn, catalog=True):
     if hasattr(request, 'apps') and request.apps.has_key(fqn):
         return request.apps[fqn]

@@ -16,7 +16,6 @@
 from murano.engine.system import agent
 from murano.engine.system import agent_listener
 from murano.engine.system import heat_stack
-from murano.engine.system import openstack
 from murano.engine.system import instance_reporter
 from murano.engine.system import logger
 #from murano.engine.system import mistralclient
@@ -25,6 +24,7 @@ from murano.engine.system import resource_manager
 from murano.engine.system import status_reporter
 from murano.engine.system import test_fixture
 
+from murano.hybrid import openstack
 
 def register(package):
     package.register_class(agent.Agent)

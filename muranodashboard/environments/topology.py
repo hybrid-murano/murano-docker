@@ -186,6 +186,13 @@ def render_d3_data(request, environment):
             if(az is not None):
                 if(az == 'baremetal_az'):
                     return static('dashboard/img/baremetal.png')
+                parts = az.split('--')
+                if(len(parts)>1):
+                    if(parts[1] == 'aws'):
+                        return static('dashboard/img/server-aws.png')
+                    if(parts[1] == 'vcloud'):
+                        return static('dashboard/img/server-vcloud.png')
+                    return static('dashboard/img/server-openstack.png')
             if len(node_data.get('ipAddresses', [])) > 0:
                 image = unit_image_active
             else:

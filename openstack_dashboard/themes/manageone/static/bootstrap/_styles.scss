@@ -71,7 +71,8 @@ h4 {
   user-select: none;
 }
 .btn-danger.disabled {
-    color: #fff;
+//    border-color: #333333;
+    background: transparent;
 }
 //.btn-group > .btn + .dropdown-toggle {
 //    padding-left: 8px;
@@ -149,7 +150,7 @@ h4 {
 }
 .btn-default {
     color:#333;
-    background: url('/static/themes/manageone/img/Button_bg.png');
+//    background: url('/static/themes/manageone/img/Button_bg.png');
     border-color:#d3d3d3;
     height: 25px;
 }
@@ -157,8 +158,9 @@ h4 {
     font-size: 12px;
 }
 .btn-danger {
-    color: $btn-danger-color;
-    background: $btn-danger-bg1;
+//    color: $btn-warning-color;
+    border-color: #333333;
+    background: transparent;
 }
 .ajax-modal:hover {
     background: transparent;
@@ -340,7 +342,7 @@ h1 {
 
 .btn-default:hover {
 
-     background: url('/static/themes/manageone/img/Button_bg.png');
+//     background: url('/static/themes/manageone/img/Button_bg.png');
   border-color: #d3d3d3;
   height: 25px;
   

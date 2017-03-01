@@ -435,7 +435,7 @@ AVAILABLE_THEMES = [
     ('manageone', 'Manage One', 'themes/manageone'),
     ('otc', 'Open Telecom Cloud', 'themes/otc'),
 ]
-DEFAULT_THEME = 'hybrid'
+DEFAULT_THEME = 'manageone'
 
 LOGGING = {
     'version': 1,

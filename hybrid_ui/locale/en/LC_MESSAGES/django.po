@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Murano"
-msgstr "Service Catalog"
+msgstr "XaaS"
 
 msgid "FusionSphere"
 msgstr "FusionSphere"
