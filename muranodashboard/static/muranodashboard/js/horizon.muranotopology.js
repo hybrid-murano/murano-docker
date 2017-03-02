@@ -326,7 +326,7 @@ $(function() {
 
     if ($(muranoContainer).length) {
       var width = $(muranoContainer).width();
-      var height = 1040;
+      var height = $(window).height() - 200;
       var environmentId = $("#environment_id").data("environment_id");
       var graph = $("#d3_data").data("d3_data");
       var svg = d3.select(muranoContainer).append("svg")

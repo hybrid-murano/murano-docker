@@ -357,10 +357,7 @@ class ImageChoiceField(ChoiceField):
         except Exception:
             images = []
             exceptions.handle(request, _("Unable to retrieve volume types."))
-        if 'name' in kwargs:
-            choices = [(image.id, image.name) for image in images if image.name.startswith(kwargs.get('name'))]
-        else:
-            choices = [(image.id, image.name) for image in images]
+        choices = [(image.id, image.name) for image in images]
         if not choices:
             choices.insert(0, ("", _("No images available")))
         self.choices = choices

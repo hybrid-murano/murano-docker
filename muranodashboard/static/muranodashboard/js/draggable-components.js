@@ -231,14 +231,14 @@ $(function() {
           return requestData;
         }
 
-        horizon.modals.modal_spinner(gettext("Waiting for a result"));
+        horizon.modals.modal_spinner(gettext("Working"));
         var button = '<div class="modal-close"' +
           '><button class="btn btn-sm btn-danger" data-placement="right"' +
           ' data-original-title="Action result won\'t be available">Stop Waiting</button></div>';
         var modalContent = horizon.modals.spinner.find(".modal-content");
         var intervalId;
 
-        modalContent.append(button);
+        //modalContent.append(button);
         $('.modal-close button').tooltip();
         $('.modal-close button').on("click", function () {
             window.clearInterval(intervalId);

@@ -71,7 +71,7 @@ h4 {
   user-select: none;
 }
 .btn-danger.disabled {
-//    border-color: #333333;
+    border-color: #d3d3d3;
     background: transparent;
 }
 //.btn-group > .btn + .dropdown-toggle {
@@ -158,8 +158,7 @@ h4 {
     font-size: 12px;
 }
 .btn-danger {
-//    color: $btn-warning-color;
-    border-color: #333333;
+    color: #333;
     background: transparent;
 }
 .ajax-modal:hover {
