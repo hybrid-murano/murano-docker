@@ -51,7 +51,7 @@ root = os.path.join(os.path.abspath(__file__), os.pardir, os.pardir, os.pardir)
 if os.path.exists(os.path.join(root, 'murano', '__init__.py')):
     sys.path.insert(0, root)
 
-
+from murano.hybrid import engine as hybrid_engine
 def main():
     try:
         config.parse_args()
@@ -60,6 +60,7 @@ def main():
         workers = CONF.engine.workers
         if not workers:
             workers = processutils.get_worker_count()
+        hybrid_engine.patch()
         launcher = service.launch(CONF,
                                   engine.EngineService(), workers=workers)
         launcher.wait()

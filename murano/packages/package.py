@@ -24,7 +24,7 @@ import six
 class PackageType(object):
     Library = 'Library'
     Application = 'Application'
-    ALL = [Library, Application, 'Environment', 'Schedule', 'Cloud']
+    ALL = [Library, Application]
 
 
 @six.add_metaclass(abc.ABCMeta)
